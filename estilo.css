@@ -1,0 +1,180 @@
+/* Configurações Gerais e Reset */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Fundo: Um cinza levemente azulado, muito confortável para leitura */
+body {
+    background-color: #f4f6f9;
+    color: #4a4a4a;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Container do Quiz: Branco fosco com sombra suave */
+.container {
+    width: 100%;
+    max-width: 750px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    flex: 1;
+}
+
+/* Cabeçalho: Azul intermediário (nem escuro, nem brilhante) */
+header {
+    background-color: #4a69bd;
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Rodapé: Cinza escuro neutro */
+footer {
+    background-color: #2f3542;
+    color: #ced6e0;
+    text-align: center;
+    padding: 15px;
+    margin-top: auto;
+    font-size: 0.85rem;
+}
+
+/* Formulários e Inputs */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #57606f;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ced6e0;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #f8f9fa;
+    color: #2f3542;
+    transition: all 0.3s;
+}
+
+/* Quando clica no input: Destaque sutil em azul */
+.form-control:focus {
+    border-color: #4a69bd;
+    background-color: #ffffff;
+    outline: none;
+}
+
+/* Botões: Tom de azul firme, mas agradável */
+.btn {
+    display: inline-block;
+    width: 100%;
+    padding: 12px;
+    background-color: #1e3799;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.btn:hover {
+    background-color: #0c2461;
+}
+
+/* Área das Perguntas do Quiz */
+.question-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #2f3542;
+}
+
+.alternatives-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Alternativas: Fundo cinza bem claro, muda para azul bebê no passar do mouse */
+.alternative-option {
+    display: flex;
+    align-items: center;
+    padding: 14px;
+    background-color: #f1f2f6;
+    border: 1px solid #e4e7eb;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.alternative-option:hover {
+    background-color: #e1e5f2;
+    border-color: #4a69bd;
+}
+
+.alternative-option input[type="radio"] {
+    margin-right: 12px;
+    transform: scale(1.1);
+}
+
+/* Tabela de Ranking Modesta */
+.ranking-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.ranking-table th {
+    background-color: #747d8c;
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.ranking-table td {
+    padding: 12px;
+    border-bottom: 1px solid #e4e7eb;
+    color: #57606f;
+}
+
+.ranking-table tr:nth-child(even) {
+    background-color: #f1f2f6;
+}
+
+/* Mensagens de Feedback (Sucesso e Erro) sem cores berrantes */
+.alert {
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+
+/* Verde muted (suave) */
+.alert-success {
+    background-color: #ebf7ee;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+}
+
+/* Vermelho muted (suave) */
+.alert-danger {
+    background-color: #fdf2f2;
+    color: #c62828;
+    border: 1px solid #ffcdd2;
+}
