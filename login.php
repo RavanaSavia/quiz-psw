@@ -1,32 +1,31 @@
 <?php
-include 'includes/header.php';
-$erro = "";
-
-// Se já estiver logado, vai para o painel
-if (isset($_SESSION['usuario'])) {
-    header("Location: painel.php");
-    exit;
-}
+require_once 'includes/header.php';
 ?>
 
-<h2>🔑 Acesso ao Sistema</h2>
+<div class="container">
+    <h2>🔑 Acesso ao Sistema</h2>
+    <p style="margin-bottom: 20px; color: #747d8c;">Digite seu usuário e senha para entrar.</p>
 
-<?php if ($erro): ?>
-    <div class="feedback errou"><?= $erro ?></div>
-<?php endif; ?>
+    <form action="controllers/login.php" method="POST">
+        <div class="form-group">
+            <label for="usuario">Nome de usuário:</label>
+            <input type="text" id="usuario" name="usuario" class="form-control" placeholder="Digite seu nome" required>
+        </div>
 
-<form method="POST" action="controllers/proc_login.php">
-   <label>Nome de usuário:</label>
-    <input type="text" name="nome" required placeholder="Digite seu nome">
+        <div class="form-group">
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" class="form-control" placeholder="Digite sua senha" required>
+        </div>
 
-    <label>Senha:</label>
-    <input type="password" name="senha" required placeholder="Digite sua senha">
+        <button type="submit" class="btn">Entrar</button>
+    </form>
 
-     <button type="submit">Entrar</button>
-     </form>
+    <div style="margin-top: 15px; text-align: center;">
+        <p>Ainda não tem conta? <a href="cadastro.php" style="color: #4a69bd; font-weight: bold; text-decoration: none;">Cadastre-se</a></p>
+    </div>
+</div>
 
-     <p style="text-align:center; margin-top:15px;">
-         Ainda não tem conta? <a href="cadastro.php">Cadastre-se</a>
-     </p>
+<?php
 
-     <?php include 'includes/footer.php'; ?>
+require_once 'includes/footer.php';
+?>
