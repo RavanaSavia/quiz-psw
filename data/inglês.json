@@ -1,0 +1,43 @@
+[
+    {
+        "id": 1,
+        "pergunta": "How do you say 'Obrigado' in English?",
+        "alternativas": {"A": "Please", "B": "Thank you", "C": "You're welcome", "D": "Sorry"},
+        "correta": "B"
+    },
+
+    {
+        "id": 2,
+        "pergunta": "Which option completes the sentence: 'She ___ my best friend.'?",
+        "alternativas": {"A": "am", "B": "are", "C": "is", "D": "be"},
+        "correta": "C"
+    },
+
+    {
+        "id": 3,
+        "pergunta": "What is the past tense of the verb 'to go'?",
+        "alternativas": {"A": "Goed", "B": "Gone", "C": "Went", "D": "Goes"},
+        "correta": "C"
+    },
+
+    {
+        "id": 4,
+        "pergunta": "What does the idiom 'Piece of cake' mean?",
+        "alternativas": {"A": "Algo muito gostoso", "B": "Algo muito fácil", "C": "Um pedaço de bolo real", "D": "Algo perigoso"},
+        "correta": "B"
+    },
+
+    {
+        "id": 5,
+        "pergunta": "Choose the correct plural form of 'child':",
+        "alternativas": {"A": "Childs", "B": "Children", "C": "Childrens", "D": "Childes"},
+        "correta": "B"
+    },
+
+    {
+        "id": 6,
+        "pergunta": "What is the opposite of the word 'Large'?",
+        "alternativas": {"A": "Big", "B": "Small", "C": "Huge", "D": "Tall"},
+        "correta": "B"
+    }
+]

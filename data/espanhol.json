@@ -1,0 +1,43 @@
+[
+    {
+        "id": 1,
+        "pergunta": "¿Qué significa la palabra 'apellido' en español?",
+        "alternativas": {"A": "Apelido", "B": "Sobrenome", "C": "Nome", "D": "Apelido carinhoso"},
+        "correta": "B"
+    },
+
+    {
+        "id": 2,
+        "pergunta": "¿Cómo se dice 'Bom dia' en español?",
+        "alternativas": {"A": "Buenas noches", "B": "Buenas tardes", "C": "Buenos días", "D": "Hola"},
+        "correta": "C"
+    },
+
+    {
+        "id": 3,
+        "pergunta": "Completa la frase: 'Ellos ___ muy simpáticos.'",
+        "alternativas": {"A": "es", "B": "somos", "C": "son", "D": "eres"},
+        "correta": "C"
+    },
+
+    {
+        "id": 4,
+        "pergunta": "¿Cuál de estos colores corresponde al color 'Amarelo'?",
+        "alternativas": {"A": "Rojo", "B": "Verde", "C": "Amarillo", "D": "Azul"},
+        "correta": "C"
+    },
+
+    {
+        "id": 5,
+        "pergunta": "En español, el término 'cachorro' se refiere comúnmente a:",
+        "alternativas": {"A": "Um cão adulto", "B": "O filhote de qualquer mamífero", "C": "Um gato", "D": "Um cavalo"},
+        "correta": "B"
+    },
+
+    {
+        "id": 6,
+        "pergunta": "¿Cuál es el artículo correcto para la palabra 'agua' en singular?",
+        "alternativas": {"A": "La agua", "B": "El agua", "C": "Lo agua", "D": "Una agua"},
+        "correta": "B"
+    }
+]

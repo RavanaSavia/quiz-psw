@@ -1,0 +1,43 @@
+[
+    {
+        "id": 1,
+        "pergunta": "Qual das alternativas apresenta uma palavra escrita de forma CORRETA?",
+        "alternativas": {"A": "Excessão", "B": "Exceção", "C": "Ecesão", "D": "Excêção"},
+        "correta": "B"
+    },
+
+    {
+        "id": 2,
+        "pergunta": "Na frase 'O menino comprou um livro', qual é o sujeito?",
+        "alternativas": {"A": "O menino", "B": "comprou", "C": "um livro", "D": "livro"},
+        "correta": "A"
+    },
+
+    {
+        "id": 3,
+        "pergunta": "Qual é o antônimo da palavra 'efêmero'?",
+        "alternativas": {"A": "Passageiro", "B": "Curto", "C": "Duradouro", "D": "Rápido"},
+        "correta": "C"
+    },
+
+    {
+        "id": 4,
+        "pergunta": "Indique a alternativa em que o uso da crase é OBRIGATÓRIO:",
+        "alternativas": {"A": "Fui a pé.", "B": "Entreguei o presente a ela.", "C": "Vou a escola todos os dias.", "D": "Ele começou a cantar."},
+        "correta": "C"
+    },
+
+    {
+        "id": 5,
+        "pergunta": "Qual figura de linguagem está presente em 'O jardim chorava a ausência das flores'?",
+        "alternativas": {"A": "Metáfora", "B": "Personificação", "C": "Hipérbole", "D": "Eufemismo"},
+        "correta": "B"
+    },
+
+    {
+        "id": 6,
+        "pergunta": "Qual palavra é um ditongo?",
+        "alternativas": {"A": "Saúde", "B": "Caixa", "C": "Poeta", "D": "Uruguai"},
+        "correta": "B"
+    }
+]

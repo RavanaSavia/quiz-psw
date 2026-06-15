@@ -1,0 +1,43 @@
+[
+    {
+        "id": 1,
+        "pergunta": "Qual é o maior planeta do Sistema Solar?",
+        "alternativas": {"A": "Terra", "B": "Marte", "C": "Júpiter", "D": "Saturno"},
+        "correta": "C"
+    },
+
+    {
+        "id": 2,
+        "pergunta": "Quem pintou a famosa obra 'Mona Lisa'?",
+        "alternativas": {"A": "Vincent van Gogh", "B": "Leonardo da Vinci", "C": "Pablo Picasso", "D": "Michelangelo"},
+        "correta": "B"
+    },
+
+    {
+        "id": 3,
+        "pergunta": "Em qual continente fica localizado o Egito?",
+        "alternativas": {"A": "Ásia", "B": "Europa", "C": "África", "D": "América"},
+        "correta": "C"
+    },
+
+    {
+        "id": 4,
+        "pergunta": "Qual é o metal cujo símbolo químico é Au?",
+        "alternativas": {"A": "Prata", "B": "Cobre", "C": "Ouro", "D": "Ferro"},
+        "correta": "C"
+    },
+
+    {
+        "id": 5,
+        "pergunta": "Quantos oceanos existem oficialmente na Terra?",
+        "alternativas": {"A": "3", "B": "4", "C": "5", "D": "6"},
+        "correta": "C"
+    },
+
+    {
+        "id": 6,
+        "pergunta": "Qual país sediou os Jogos Olímpicos de Verão em 2016?",
+        "alternativas": {"A": "Estados Unidos", "B": "Reino Unido", "C": "Brasil", "D": "Japão"},
+        "correta": "C"
+    }
+]
