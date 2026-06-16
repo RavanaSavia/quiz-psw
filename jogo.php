@@ -12,7 +12,7 @@ if (!isset($_SESSION['usuario'])) {
 $materia = $_GET['materia'] ?? 'gerais';
 $caminho_perguntas = __DIR__ . "/data/{$materia}.json";
 
-// 2. LEITURA DO ARQUIVO: Corrigido para verificar se as perguntas existem!
+// 2. LEITURA DO ARQUIVO: Verifica se as perguntas existem
 $perguntas = [];
 if (file_exists($caminho_perguntas)) {
     $perguntas = json_decode(file_get_contents($caminho_perguntas), true) ?? [];
@@ -20,46 +20,81 @@ if (file_exists($caminho_perguntas)) {
 
 // Se não houver perguntas cadastradas para essa matéria
 if (empty($perguntas)) {
-    echo "<div class='container' style='text-align:center; padding: 40px;'><p>⚠️ Nenhuma pergunta encontrada para a matéria: <strong>" . htmlspecialchars($materia) . "</strong>.</p><p style='margin-top: 15px;'><a href='painel.php' class='btn' style='text-decoration:none;'>Voltar ao Painel</a></p></div>";
+    echo "<div class='container' style='text-align:center; padding: 40px;'><p>⚠️ Nenhuma pergunta encontrada.</p></div>";
     require_once 'includes/footer.php';
     exit;
 }
 
-// 3. LÓGICA DE CORREÇÃO (Processa quando o usuário envia as respostas)
+// 3. LÓGICA DE CORREÇÃO DETALHADA (Quando o usuário envia o formulário)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $respostas_usuario = $_POST['respostas'] ?? [];
     $pontos_finais = 0;
-
-    // Confere cada resposta enviada com o gabarito do JSON
-    foreach ($perguntas as $index => $pergunta) {
-        $id_pergunta = $pergunta['id'];
-        if (isset($respostas_usuario[$id_pergunta]) && $respostas_usuario[$id_pergunta] === $pergunta['correta']) {
-            $pontos_finais += 10;
-        }
-    }
-
-    // Exibe a tela de fim de jogo
     ?>
-    <div class="container" style="text-align: center;">
-        <h2>🎉 Fim de Jogo!</h2>
-        <p style="font-size: 18px; margin-top: 10px;">Você terminou o Quiz de <strong><?= ucfirst($materia) ?></strong>.</p>
-        
-        <div style="background-color: #f1f2f6; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <span style="font-size: 16px; color: #747d8c;">Sua Pontuação nesta rodada:</span>
-            <h1 style="font-size: 48px; color: #4a69bd; margin-top: 5px;"><?= $pontos_finais ?> Pontos</h1>
-        </div>
 
-        <form action="controllers/proc_dados.php" method="POST">
-            <input type="hidden" name="points" value="<?= $pontos_finais ?>">
-            <button type="submit" class="btn">💾 Salvar Pontuação no Ranking</button>
-        </form>
+    <div class="container" style="max-width: 700px;">
+        <h2 style="text-align: center; margin-bottom: 10px;">📊 Correção do seu Quiz</h2>
+        <p style="text-align: center; color: #747d8c; margin-bottom: 30px;">Veja abaixo onde você acertou e onde errou.</p>
+
+        <?php 
+        foreach ($perguntas as $num => $pergunta): 
+            $id_pergunta = $pergunta['id'];
+            $resposta_marcada = $respostas_usuario[$id_pergunta] ?? 'Nenhuma';
+            $resposta_correta = $pergunta['correta'];
+            
+            // Verifica se o aluno acertou ou errou a questão
+            $acertou = ($resposta_marcada === $resposta_correta);
+            
+            if ($acertou) {
+                $pontos_finais += 10;
+                $cor_borda = "#1dd1a1"; // Verde
+                $status = "🟢 Você acertou!";
+            } else {
+                $cor_borda = "#ff6b6b"; // Vermelho
+                $status = "🔴 Você errou!";
+            }
+        ?>
+            <div style="background-color: #f1f2f6; padding: 20px; border-radius: 8px; margin-bottom: 20px; border-left: 5px solid <?= $cor_borda ?>;">
+                <p style="font-size: 15px; font-weight: bold; margin-bottom: 10px;">
+                    <?= ($num + 1) ?>. <?= htmlspecialchars($pergunta['pergunta']) ?>
+                </p>
+                
+                <p style="font-size: 14px; margin: 5px 0;">
+                    <strong>Sua resposta:</strong> 
+                    <span style="color: <?= $acertou ? '#10ac84' : '#ee5253' ?>; font-weight: bold;">
+                        <?= $resposta_marcada ?>) <?= htmlspecialchars($pergunta['alternativas'][$resposta_marcada] ?? 'Não respondida') ?>
+                    </span>
+                </p>
+
+                <?php if (!$acertou): ?>
+                    <p style="font-size: 14px; margin: 5px 0; color: #222f3e;">
+                        <strong>💡 Resposta correta:</strong> 
+                        <span style="font-weight: bold; color: #10ac84;">
+                            <?= $resposta_correta ?>) <?= htmlspecialchars($pergunta['alternativas'][$resposta_correta]) ?>
+                        </span>
+                    </p>
+                <?php endif; ?>
+
+                <span style="display: inline-block; margin-top: 8px; font-size: 12px; font-weight: bold;"><?= $status ?></span>
+            </div>
+        <?php endforeach; ?>
+
+        <div style="background-color: #2f3640; color: white; padding: 25px; border-radius: 10px; text-align: center; margin-top: 30px;">
+            <span style="font-size: 16px; color: #a4b0be;">Pontuação Total Conquistada:</span>
+            <h1 style="font-size: 50px; color: #f1c40f; margin: 10px 0;"><?= $pontos_finais ?> Pontos</h1>
+
+            <form action="controllers/proc_dados.php" method="POST" style="margin-top: 15px;">
+                <input type="hidden" name="pontos" value="<?= $pontos_finais ?>">
+                <button type="submit" class="btn" style="background-color: #1dd1a1; width: 100%;">💾 Gravar esses pontos no Ranking</button>
+            </form>
+        </div>
     </div>
+
     <?php
     require_once 'includes/footer.php';
     exit;
 }
 
-// 4. EXIBIÇÃO DO FORMULÁRIO DO QUIZ
+// 4. EXIBIÇÃO DO FORMULÁRIO DO QUIZ (Quando entra na página para responder)
 ?>
 <div class="container" style="max-width: 700px;">
     <h2 style="text-align: center; margin-bottom: 5px;">📝 Quiz: <?= ucfirst($materia) ?></h2>
