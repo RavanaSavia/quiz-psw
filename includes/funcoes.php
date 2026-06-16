@@ -4,7 +4,6 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Define o caminho absoluto correto para o banco de dados dos usuários
 $CAMINHO = __DIR__ . "/../data/usuarios.json";
 
 function carregar_arquivo() {
@@ -21,42 +20,27 @@ function salvar_arquivo($dados) {
     if (empty($dados)) {
         return false;
     }
-    // Grava de forma estruturada e legível conforme exigido
     file_put_contents($CAMINHO, json_encode($dados, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
     return true;
 }
 
 function cadastrar_usuario($usuario, $senha) {
     if (empty($usuario) || empty($senha)) {
-        $_SESSION['erro'] = "Preencha todos os campos obrigatórios.";
-        header("Location: ../cadastro.php");
-        exit;
-    }
-
-    $usuarios = carregar_arquivo();
-
-    // 🌟 Validação de segurança extra: impede nomes duplicados
-    foreach ($usuarios as $user) {
-        if (mb_strtolower($user['usuario']) === mb_strtolower($usuario)) {
-            $_SESSION['erro'] = "Este nome de usuário já está cadastrado.";
-            header("Location: ../cadastro.php");
-            exit;
-        }
+        return false;
     }
 
     $novo_usuario = [
         "usuario" => $usuario,
-        "senha" => $senha, // Armazenamento em string conforme combinado para fins didáticos
+        "senha" => $senha,
     ];
 
+    $usuarios = carregar_arquivo();
     $usuarios[] = $novo_usuario;
 
     if (salvar_arquivo($usuarios)) {
-        $_SESSION['sucesso'] = "Cadastro realizado com sucesso! Faça o seu login.";
         header("Location: ../login.php");
         exit;
     } else {
-        $_SESSION['erro'] = "Erro interno ao salvar os dados.";
         header("Location: ../cadastro.php");
         exit;
     }
@@ -69,25 +53,21 @@ function login($usuarioDigitado, $senhaDigitada) {
         if ($user['usuario'] === $usuarioDigitado && $user['senha'] === $senhaDigitada) {
             $_SESSION['usuario'] = $user['usuario'];
             $_SESSION['logado'] = true;
-            $_SESSION['pontos'] = 0; // Inicializa a contagem global da rodada
-            header('Location: ../painel.php'); 
+            header('Location: ../painel.php'); // Redireciona para o painel de matérias
             exit();
         }
     }
     
-    $_SESSION['erro'] = "Usuário ou senha incorretos.";
-    header('Location: ../login.php');
+    $_SESSION['erro'] = "Usuário ou senha incorretos";
+    header('Location: ../login.php?erro=1');
     exit();
 }
 
 function logout() {
-    // Tratamento seguro de encerramento
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
+    session_start();
     session_unset();
     session_destroy();
-    header('Location: login.php'); // Redireciona a partir da raiz (onde fica o logout.php)
+    header('Location: ../login.php');
     exit;
 }
 ?>
